@@ -34,7 +34,7 @@ which is optional (the shared preferences mode).
 // First parameter is your Context, like an Activity, the second is a key.
 val myPrefs = RxkPrefs(this, "my_prefs")
 
-// The optional third parameter is a mode.
+// The optional third parameter is a mode, it defaults to MODE_PRIVATE above.
 // This is like using Context.getSharedPreferences("my_prefs", MODE_PRIVATE)
 val myPrefs = RxkPrefs(this, "my_prefs", MODE_PRIVATE)
 ```

@@ -1,3 +1,8 @@
+/*
+ * Licensed under Apache-2.0
+ *
+ * Designed and developed by Aidan Follestad (@afollestad)
+ */
 package com.afollestad.rxkprefs
 
 import android.content.SharedPreferences
@@ -98,8 +103,5 @@ class RealPrefTest {
     emitter.onNext(value)
 
     verify(prefsEditor.putString(PREF_KEY, value)).apply()
-
-    val sub = pref.asObservable().subscribe {  }
-    sub.dispose()
   }
 }
