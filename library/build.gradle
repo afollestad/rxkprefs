@@ -1,0 +1,36 @@
+apply from: '../dependencies.gradle'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: "com.github.ben-manes.versions"
+
+apply from: '../bintrayconfig.gradle'
+
+android {
+  compileSdkVersion versions.compileSdk
+  buildToolsVersion versions.buildTools
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  defaultConfig {
+    minSdkVersion versions.minSdk
+    targetSdkVersion versions.compileSdk
+    versionCode versions.publishVersionCode
+    versionName versions.publishVersion
+  }
+}
+
+dependencies {
+  implementation 'com.android.support:support-annotations:' + versions.supportLib
+  implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + versions.kotlin
+  implementation 'io.reactivex.rxjava2:rxjava:' + versions.rxJava
+
+  testImplementation 'junit:junit:' + versions.junit
+  testImplementation 'org.mockito:mockito-core:' + versions.mockito
+  testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:' + versions.mockitoKotlin
+  testImplementation 'com.google.truth:truth:0.42'
+}
+
+apply from: '../spotless.gradle'
