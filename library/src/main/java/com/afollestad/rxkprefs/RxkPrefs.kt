@@ -21,7 +21,16 @@ import com.afollestad.rxkprefs.adapters.StringSet
 import com.afollestad.rxkprefs.adapters.StringSetAdapter
 import io.reactivex.Observable
 
-/** @author Aidan Follestad (@afollestad) */
+/**
+ * The core class of the library. Wraps around the Android framework's SharedPreferences,
+ * and react-ifies them.
+ *
+ * @author Aidan Follestad (@afollestad)
+ *
+ * @param context The context used to retrieve preferences.
+ * @param key The key of the collection of shared preferences.
+ * @param mode The mode which is passed into [Context.getSharedPreferences].
+ */
 class RxkPrefs(
   context: Context,
   key: String,
@@ -41,6 +50,11 @@ class RxkPrefs(
   }
       .share()
 
+  /**
+   * Retrieves a boolean preference.
+   *
+   * @return a [Pref] which gets and sets booleans.
+   */
   @CheckResult fun boolean(
     key: String,
     defaultValue: Boolean = false
@@ -48,6 +62,11 @@ class RxkPrefs(
     return RealPref(prefs, key, defaultValue, onKeyChange, BooleanAdapter.INSTANCE)
   }
 
+  /**
+   * Retrieves a float preference.
+   *
+   * @return a [Pref] which gets and sets floats.
+   */
   @CheckResult fun float(
     key: String,
     defaultValue: Float = 0f
@@ -55,6 +74,11 @@ class RxkPrefs(
     return RealPref(prefs, key, defaultValue, onKeyChange, FloatAdapter.INSTANCE)
   }
 
+  /**
+   * Retrieves a integers preference.
+   *
+   * @return a [Pref] which gets and sets integers.
+   */
   @CheckResult fun integer(
     key: String,
     defaultValue: Int = 0
@@ -62,6 +86,11 @@ class RxkPrefs(
     return RealPref(prefs, key, defaultValue, onKeyChange, IntAdapter.INSTANCE)
   }
 
+  /**
+   * Retrieves a long preference.
+   *
+   * @return a [Pref] which gets and sets longs.
+   */
   @CheckResult fun long(
     key: String,
     defaultValue: Long = 0L
@@ -69,6 +98,11 @@ class RxkPrefs(
     return RealPref(prefs, key, defaultValue, onKeyChange, LongAdapter.INSTANCE)
   }
 
+  /**
+   * Retrieves a string preference.
+   *
+   * @return a [Pref] which gets and sets strings.
+   */
   @CheckResult fun string(
     key: String,
     defaultValue: String = ""
@@ -76,6 +110,11 @@ class RxkPrefs(
     return RealPref(prefs, key, defaultValue, onKeyChange, StringAdapter.INSTANCE)
   }
 
+  /**
+   * Retrieves a string set preference.
+   *
+   * @return a [Pref] which gets and sets string sets.
+   */
   @CheckResult fun stringSet(
     key: String,
     defaultValue: StringSet = mutableSetOf()
@@ -83,6 +122,7 @@ class RxkPrefs(
     return RealPref(prefs, key, defaultValue, onKeyChange, StringSetAdapter.INSTANCE)
   }
 
+  /** Clears all preferences in the current preferences collection. */
   fun clear() {
     prefs.edit()
         .clear()
