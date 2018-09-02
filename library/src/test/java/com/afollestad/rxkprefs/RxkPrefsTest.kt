@@ -19,7 +19,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Test
 import org.mockito.stubbing.Answer
 
-class RxkPrefsZTest {
+class RxkPrefsTest {
   companion object {
     const val PREFS_KEY = "hello_world"
     const val PREFS_MODE = MODE_PRIVATE
