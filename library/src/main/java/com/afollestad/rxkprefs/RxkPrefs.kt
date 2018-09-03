@@ -36,7 +36,7 @@ class RxkPrefs(
   key: String,
   mode: Int = MODE_PRIVATE
 ) {
-  private val prefs = context.getSharedPreferences(key, mode)
+  private val prefs = context.getSharedPreferences(key, mode)!!
 
   @VisibleForTesting
   internal val onKeyChange = Observable.create<String> { emitter ->
@@ -48,7 +48,7 @@ class RxkPrefs(
     }
     prefs.registerOnSharedPreferenceChangeListener(changeListener)
   }
-      .share()
+      .share()!!
 
   /**
    * Retrieves a boolean preference.
@@ -128,4 +128,7 @@ class RxkPrefs(
         .clear()
         .apply()
   }
+
+  /** @return The underlying SharedPreferences instance. */
+  @CheckResult fun getSharedPrefs() = prefs
 }
