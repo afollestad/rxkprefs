@@ -9,7 +9,6 @@ import android.content.SharedPreferences
 
 /** @author Aidan Follestad (@afollestad) */
 internal class StringAdapter : PrefAdapter<String> {
-
   companion object {
     val INSTANCE = StringAdapter()
   }

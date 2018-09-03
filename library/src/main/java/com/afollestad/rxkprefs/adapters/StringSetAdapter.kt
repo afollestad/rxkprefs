@@ -11,7 +11,6 @@ typealias StringSet = MutableSet<String>
 
 /** @author Aidan Follestad (@afollestad) */
 internal class StringSetAdapter : PrefAdapter<StringSet> {
-
   companion object {
     val INSTANCE = StringSetAdapter()
   }
