@@ -30,12 +30,10 @@ internal class RealPref<T>(
 
   override fun defaultValue() = defaultValue
 
-  @Synchronized override fun get(): T {
-    return if (!isSet()) {
-      defaultValue
-    } else {
-      adapter.get(key, prefs)
-    }
+  @Synchronized override fun get() = if (!isSet()) {
+    defaultValue
+  } else {
+    adapter.get(key, prefs)
   }
 
   @Synchronized override fun set(value: T) {
@@ -54,7 +52,5 @@ internal class RealPref<T>(
 
   override fun asObservable() = values
 
-  override fun asConsumer(): Consumer<in T> {
-    return Consumer { set(it) }
-  }
+  override fun asConsumer(): Consumer<in T> = Consumer { set(it) }
 }

@@ -58,9 +58,7 @@ class RxkPrefs(
   @CheckResult fun boolean(
     key: String,
     defaultValue: Boolean = false
-  ): Pref<Boolean> {
-    return RealPref(prefs, key, defaultValue, onKeyChange, BooleanAdapter.INSTANCE)
-  }
+  ): Pref<Boolean> = RealPref(prefs, key, defaultValue, onKeyChange, BooleanAdapter.INSTANCE)
 
   /**
    * Retrieves a float preference.
@@ -70,9 +68,7 @@ class RxkPrefs(
   @CheckResult fun float(
     key: String,
     defaultValue: Float = 0f
-  ): Pref<Float> {
-    return RealPref(prefs, key, defaultValue, onKeyChange, FloatAdapter.INSTANCE)
-  }
+  ): Pref<Float> = RealPref(prefs, key, defaultValue, onKeyChange, FloatAdapter.INSTANCE)
 
   /**
    * Retrieves a integers preference.
@@ -82,9 +78,7 @@ class RxkPrefs(
   @CheckResult fun integer(
     key: String,
     defaultValue: Int = 0
-  ): Pref<Int> {
-    return RealPref(prefs, key, defaultValue, onKeyChange, IntAdapter.INSTANCE)
-  }
+  ): Pref<Int> = RealPref(prefs, key, defaultValue, onKeyChange, IntAdapter.INSTANCE)
 
   /**
    * Retrieves a long preference.
@@ -94,9 +88,7 @@ class RxkPrefs(
   @CheckResult fun long(
     key: String,
     defaultValue: Long = 0L
-  ): Pref<Long> {
-    return RealPref(prefs, key, defaultValue, onKeyChange, LongAdapter.INSTANCE)
-  }
+  ): Pref<Long> = RealPref(prefs, key, defaultValue, onKeyChange, LongAdapter.INSTANCE)
 
   /**
    * Retrieves a string preference.
@@ -106,9 +98,7 @@ class RxkPrefs(
   @CheckResult fun string(
     key: String,
     defaultValue: String = ""
-  ): Pref<String> {
-    return RealPref(prefs, key, defaultValue, onKeyChange, StringAdapter.INSTANCE)
-  }
+  ): Pref<String> = RealPref(prefs, key, defaultValue, onKeyChange, StringAdapter.INSTANCE)
 
   /**
    * Retrieves a string set preference.
@@ -118,9 +108,7 @@ class RxkPrefs(
   @CheckResult fun stringSet(
     key: String,
     defaultValue: StringSet = mutableSetOf()
-  ): Pref<StringSet> {
-    return RealPref(prefs, key, defaultValue, onKeyChange, StringSetAdapter.INSTANCE)
-  }
+  ): Pref<StringSet> = RealPref(prefs, key, defaultValue, onKeyChange, StringSetAdapter.INSTANCE)
 
   /** Clears all preferences in the current preferences collection. */
   fun clear() {
