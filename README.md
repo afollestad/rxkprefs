@@ -19,7 +19,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
     // ... other dependencies
-    implementation 'com.afollestad:rxkprefs:1.0.0'
+    implementation 'com.afollestad:rxkprefs:1.0.1'
 }
 ```
 
