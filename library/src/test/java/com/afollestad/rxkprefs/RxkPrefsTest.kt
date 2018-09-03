@@ -47,7 +47,9 @@ class RxkPrefsTest {
   @Test fun changeListener() {
     val testKey = "wakanda forever"
     val obs = rxkPrefs.onKeyChange.test()
+
     assertThat(prefsListener).isNotNull()
+    verify(sharedPrefs).registerOnSharedPreferenceChangeListener(prefsListener)
 
     prefsListener!!.onSharedPreferenceChanged(sharedPrefs, testKey)
     obs.assertValue(testKey)
