@@ -62,10 +62,11 @@ you can do with them.
 ```kotlin
 val myPref: Pref<Int> = // ...
 
-// The key of the preference - first parameter passed in prefs.integer(...)
+// The key of the preference - first parameter passed in prefs.integer(...) or any other pref getter
+// This is always a String.
 val key: String = myPref.key()
 
-// The default value of the preference - second parameter passed in prefs.string(...)
+// The default value of the preference - second parameter passed in prefs.integer(...) or any other pref getter...
 // Or the primitive default, such as an empty string, 0, or false.
 val defaultValue: Int = myPref.defaultValue()
 
