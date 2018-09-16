@@ -10,8 +10,8 @@ package com.afollestad.rxkprefs
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
-import android.support.annotation.CheckResult
-import android.support.annotation.VisibleForTesting
+import androidx.annotation.CheckResult
+import androidx.annotation.VisibleForTesting
 import com.afollestad.rxkprefs.adapters.BooleanAdapter
 import com.afollestad.rxkprefs.adapters.FloatAdapter
 import com.afollestad.rxkprefs.adapters.IntAdapter

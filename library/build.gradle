@@ -23,7 +23,7 @@ android {
 }
 
 dependencies {
-  implementation 'com.android.support:support-annotations:' + versions.supportLib
+  implementation 'androidx.annotation:annotation:' + versions.androidx
   implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + versions.kotlin
   implementation 'io.reactivex.rxjava2:rxjava:' + versions.rxJava
 

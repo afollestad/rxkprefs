@@ -6,13 +6,14 @@
 package com.afollestad.rxkprefs.adapters
 
 import android.content.SharedPreferences
+import androidx.annotation.CheckResult
 
 typealias PrefsEditor = SharedPreferences.Editor
 
 /** @author Aidan Follestad (@afollestad) */
 internal interface PrefAdapter<T> {
 
-  fun get(
+  @CheckResult fun get(
     key: String,
     prefs: SharedPreferences
   ): T
