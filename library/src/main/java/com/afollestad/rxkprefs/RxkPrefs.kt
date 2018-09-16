@@ -53,7 +53,7 @@ class RxkPrefs(
   /**
    * Retrieves a boolean preference.
    *
-   * @return a [Pref] which gets and sets booleans.
+   * @return a [Pref] which gets and sets a boolean.
    */
   @CheckResult fun boolean(
     key: String,
@@ -63,7 +63,7 @@ class RxkPrefs(
   /**
    * Retrieves a float preference.
    *
-   * @return a [Pref] which gets and sets floats.
+   * @return a [Pref] which gets and sets a floating-point decimal.
    */
   @CheckResult fun float(
     key: String,
@@ -73,7 +73,7 @@ class RxkPrefs(
   /**
    * Retrieves a integers preference.
    *
-   * @return a [Pref] which gets and sets integers.
+   * @return a [Pref] which gets and sets a 32-bit integer.
    */
   @CheckResult fun integer(
     key: String,
@@ -83,7 +83,7 @@ class RxkPrefs(
   /**
    * Retrieves a long preference.
    *
-   * @return a [Pref] which gets and sets longs.
+   * @return a [Pref] which gets and set a 64-bit integer (long).
    */
   @CheckResult fun long(
     key: String,
@@ -93,7 +93,7 @@ class RxkPrefs(
   /**
    * Retrieves a string preference.
    *
-   * @return a [Pref] which gets and sets strings.
+   * @return a [Pref] which gets and sets a string.
    */
   @CheckResult fun string(
     key: String,
@@ -103,7 +103,7 @@ class RxkPrefs(
   /**
    * Retrieves a string set preference.
    *
-   * @return a [Pref] which gets and sets string sets.
+   * @return a [Pref] which gets and sets a string set.
    */
   @CheckResult fun stringSet(
     key: String,
