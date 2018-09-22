@@ -11,11 +11,11 @@ ext.versions = [
     versionsPlugin    : '0.20.0',
     bintrayRelease    : '0.8.1',
 
-    androidx          : '1.0.0-rc02',
-    rxJava            : '2.2.0',
+    androidx          : '1.0.0',
+    rxJava            : '2.2.2',
 
     junit             : '4.12',
-    mockito           : '2.21.0',
+    mockito           : '2.22.0',
     mockitoKotlin     : '2.0.0-RC1',
     truth             : '0.42'
 ]
