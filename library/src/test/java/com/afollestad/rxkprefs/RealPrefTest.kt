@@ -78,8 +78,8 @@ class RealPrefTest {
     verify(prefsEditor.remove(PREF_KEY)).apply()
   }
 
-  @Test fun asObservable() {
-    val obs = pref.asObservable()
+  @Test fun observe() {
+    val obs = pref.observe()
         .test()
 
     val nextValue = "goodbye"
@@ -92,12 +92,12 @@ class RealPrefTest {
     obs.assertValues(DEFAULT_VALUE, nextValue)
   }
 
-  @Test fun asConsumer() {
+  @Test fun consumer() {
     whenever(prefsEditor.putString(any(), any()))
         .doReturn(prefsEditor)
 
     val emitter = PublishSubject.create<String>()
-    emitter.subscribe(pref.asConsumer())
+    emitter.subscribe(pref)
 
     val value = "wakanda forever"
     emitter.onNext(value)
