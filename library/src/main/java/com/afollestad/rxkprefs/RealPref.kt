@@ -10,7 +10,6 @@ package com.afollestad.rxkprefs
 import android.content.SharedPreferences
 import com.afollestad.rxkprefs.adapters.PrefAdapter
 import io.reactivex.Observable
-import io.reactivex.functions.Consumer
 
 /** @author Aidan Follestad (@afollestad) */
 internal class RealPref<T>(
@@ -50,7 +49,11 @@ internal class RealPref<T>(
         .apply()
   }
 
+  override fun observe() = values
+
+  override fun accept(t: T) = set(t)
+
   override fun asObservable() = values
 
-  override fun asConsumer(): Consumer<in T> = Consumer { set(it) }
+  override fun asConsumer() = this
 }

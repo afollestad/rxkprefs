@@ -83,10 +83,7 @@ val isSet: Boolean = myPref.isSet()
 myPref.delete()
 
 // See "The Preference Observable" below 
-val observable: Observable<Int> = myPref.asObservable()
-
-// See "The Preference Consumer" below
-val consumer: Consumer<Int> = myPref.asConsumer()
+val observable: Observable<Int> = myPref.observe()
 ```
 
 ### The Preference Observable
@@ -96,7 +93,7 @@ Observable.
 
 ```kotlin
 val myPref: Pref<Long> = // ...
-val obs = myPref.asObservable()
+val obs = myPref.observe()
 
 val sub = obs.subscribe { newValue ->
   // use new value
@@ -110,7 +107,7 @@ with RxJava and what its use cases are.
 
 ### The Preference Consumer
 
-You can use the preference consumer to save preference values 
+`Pref` itself acts as an Rx `Consumer`. You can use this to save preference values 
 from the emissions of an Observable.
 
 Say you're using [RxBinding](https://github.com/JakeWharton/RxBinding) 
@@ -119,11 +116,19 @@ such as a CheckBox:
 
 ```kotlin
 val myPref: Pref<Boolean> = // ...
-val consumer = myPref.asConsumer()
 
 RxCompoundButton.checks(yourCheckboxView)
-  .subscribe(consumer)
+  .subscribe(myPref)
 ``` 
 
 Whenever the checkbox is checked or unchecked, the underlying 
 boolean shared preference is set to true or false automatically.
+
+Basically, it works like this:
+
+```kotlin
+val myObs: Observable<String> = // ...
+val myConsumer: Consumer<String> = // ...which can be an instance of Pref
+
+myObs.subscribe(myConsumer)
+```

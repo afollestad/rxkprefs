@@ -15,7 +15,7 @@ import io.reactivex.functions.Consumer
  *
  * @author Aidan Follestad (@afollestad)
  */
-interface Pref<T> {
+interface Pref<T> : Consumer<T> {
 
   /**
    * The shared preference's key.
@@ -58,12 +58,19 @@ interface Pref<T> {
    *
    * @return an Observable of the preference type.
    */
-  @CheckResult fun asObservable(): Observable<T>
+  @CheckResult fun observe(): Observable<T>
 
-  /**
-   * Gets a Consumer that sets the preference value when it's emitted into.
-   *
-   * @return a Consumer of the preference type.
-   */
-  @CheckResult fun asConsumer(): Consumer<in T>
+  @CheckResult
+  @Deprecated(
+      message = "Use observe() instead.",
+      replaceWith = ReplaceWith("observe()")
+  )
+  fun asObservable(): Observable<T>
+
+  @CheckResult
+  @Deprecated(
+      message = "Pref itself is now a Consumer. This method is redundant.",
+      replaceWith = ReplaceWith("")
+  )
+  fun asConsumer(): Consumer<in T>
 }
