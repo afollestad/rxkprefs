@@ -23,7 +23,7 @@ internal class RealPref<T>(
   private val values = onKeyChange
       .filter { it == key }
       .startWith("")
-      .map { get() }!!
+      .map { get() } ?: dumpsterFire()
 
   override fun key() = key
 

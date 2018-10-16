@@ -18,7 +18,7 @@ internal class StringSetAdapter : PrefAdapter<StringSet> {
   override fun get(
     key: String,
     prefs: SharedPreferences
-  ): StringSet = prefs.getStringSet(key, emptySet())!!
+  ): StringSet = prefs.getStringSet(key, emptySet()) ?: mutableSetOf()
 
   override fun set(
     key: String,

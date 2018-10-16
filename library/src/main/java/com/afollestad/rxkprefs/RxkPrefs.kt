@@ -36,7 +36,8 @@ class RxkPrefs(
   key: String,
   mode: Int = MODE_PRIVATE
 ) {
-  private val prefs = context.getSharedPreferences(key, mode)!!
+  private val prefs =
+    context.getSharedPreferences(key, mode) ?: dumpsterFire()
 
   @VisibleForTesting
   internal val onKeyChange = Observable.create<String> { emitter ->
@@ -48,7 +49,7 @@ class RxkPrefs(
     }
     prefs.registerOnSharedPreferenceChangeListener(changeListener)
   }
-      .share()!!
+      .share() ?: dumpsterFire()
 
   /**
    * Retrieves a boolean preference.
@@ -119,4 +120,13 @@ class RxkPrefs(
 
   /** @return The underlying SharedPreferences instance. */
   @CheckResult fun getSharedPrefs() = prefs
+}
+
+/**
+ * We this in combination with non-Kotlin framework classes that return "nullable" even though
+ * they're never actually null. Helps the compiler stay calm, along with Codacy's static analysis.
+ */
+@Throws(IllegalStateException::class)
+internal fun <T> dumpsterFire(): T {
+  throw IllegalStateException("This should never happen!")
 }

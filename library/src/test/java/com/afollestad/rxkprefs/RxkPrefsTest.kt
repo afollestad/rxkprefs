@@ -51,7 +51,7 @@ class RxkPrefsTest {
     assertThat(prefsListener).isNotNull()
     verify(sharedPrefs).registerOnSharedPreferenceChangeListener(prefsListener)
 
-    prefsListener!!.onSharedPreferenceChanged(sharedPrefs, testKey)
+    prefsListener?.onSharedPreferenceChanged(sharedPrefs, testKey)
     obs.assertValue(testKey)
   }
 

@@ -60,6 +60,7 @@ interface Pref<T> : Consumer<T> {
    */
   @CheckResult fun observe(): Observable<T>
 
+  /** Use [observe] instead. */
   @CheckResult
   @Deprecated(
       message = "Use observe() instead.",
@@ -67,6 +68,7 @@ interface Pref<T> : Consumer<T> {
   )
   fun asObservable(): Observable<T>
 
+  /** Pref itself is now a Consumer, this method is redundant. */
   @CheckResult
   @Deprecated(
       message = "Pref itself is now a Consumer. This method is redundant.",

@@ -16,7 +16,7 @@ internal class StringAdapter : PrefAdapter<String> {
   override fun get(
     key: String,
     prefs: SharedPreferences
-  ): String = prefs.getString(key, "")!!
+  ): String = prefs.getString(key, "") ?: ""
 
   override fun set(
     key: String,
