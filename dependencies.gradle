@@ -15,7 +15,7 @@ ext.versions = [
     rxJava            : '2.2.2',
 
     junit             : '4.12',
-    mockito           : '2.22.0',
+    mockito           : '2.23.0',
     mockitoKotlin     : '2.0.0-RC1',
     truth             : '0.42'
 ]
