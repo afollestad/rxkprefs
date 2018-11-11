@@ -87,10 +87,11 @@ interface RxkPrefs {
   fun getSharedPrefs(): SharedPreferences
 }
 
+/**
+ * Retrieves a new instance of the [RxkPrefs] interface.
+ */
 fun rxkPrefs(
   context: Context,
   key: String,
   mode: Int = Context.MODE_PRIVATE
-): RxkPrefs {
-  return RealRxkPrefs(context, key, mode)
-}
+): RxkPrefs = RealRxkPrefs(context, key, mode)

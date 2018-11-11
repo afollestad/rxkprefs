@@ -27,16 +27,17 @@ dependencies {
 
 ### Getting Started
 
-The core class of the library is `RxkPrefs`. It takes 3 parameters, one of 
-which is optional (the shared preferences mode).
+The core of the library is the `RxkPrefs` interface. You can retrieve an instance of this interface 
+ with the `rxkPrefs` method, which takes 3 parameters. One of these parameters is optional 
+ (the shared preferences mode).
 
 ```kotlin
 // First parameter is your Context, like an Activity, the second is a key.
-val myPrefs = RxkPrefs(this, "my_prefs")
+val myPrefs = rxkPrefs(this, "my_prefs")
 
 // The optional third parameter is a mode, it defaults to MODE_PRIVATE above.
 // This is like using Context.getSharedPreferences("my_prefs", MODE_PRIVATE)
-val myPrefs = RxkPrefs(this, "my_prefs", MODE_PRIVATE)
+val myPrefs = rxkPrefs(this, "my_prefs", MODE_PRIVATE)
 ```
 
 ### Retrieving a Preference
