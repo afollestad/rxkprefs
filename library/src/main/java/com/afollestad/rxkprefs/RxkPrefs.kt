@@ -8,48 +8,17 @@
 package com.afollestad.rxkprefs
 
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.content.SharedPreferences
 import androidx.annotation.CheckResult
-import androidx.annotation.VisibleForTesting
-import com.afollestad.rxkprefs.adapters.BooleanAdapter
-import com.afollestad.rxkprefs.adapters.FloatAdapter
-import com.afollestad.rxkprefs.adapters.IntAdapter
-import com.afollestad.rxkprefs.adapters.LongAdapter
-import com.afollestad.rxkprefs.adapters.StringAdapter
 import com.afollestad.rxkprefs.adapters.StringSet
-import com.afollestad.rxkprefs.adapters.StringSetAdapter
-import io.reactivex.Observable
 
 /**
- * The core class of the library. Wraps around the Android framework's SharedPreferences,
+ * The core of the library. Wraps around the Android framework's SharedPreferences,
  * and react-ifies them.
  *
  * @author Aidan Follestad (@afollestad)
- *
- * @param context The context used to retrieve preferences.
- * @param key The key of the collection of shared preferences.
- * @param mode The mode which is passed into [Context.getSharedPreferences].
  */
-class RxkPrefs(
-  context: Context,
-  key: String,
-  mode: Int = MODE_PRIVATE
-) {
-  private val prefs =
-    context.getSharedPreferences(key, mode) ?: dumpsterFire()
-
-  @VisibleForTesting
-  internal val onKeyChange = Observable.create<String> { emitter ->
-    val changeListener = OnSharedPreferenceChangeListener { _, key ->
-      emitter.onNext(key)
-    }
-    emitter.setCancellable {
-      prefs.unregisterOnSharedPreferenceChangeListener(changeListener)
-    }
-    prefs.registerOnSharedPreferenceChangeListener(changeListener)
-  }
-      .share() ?: dumpsterFire()
+interface RxkPrefs {
 
   /**
    * Retrieves a boolean preference.
@@ -59,7 +28,7 @@ class RxkPrefs(
   @CheckResult fun boolean(
     key: String,
     defaultValue: Boolean = false
-  ): Pref<Boolean> = RealPref(prefs, key, defaultValue, onKeyChange, BooleanAdapter.INSTANCE)
+  ): Pref<Boolean>
 
   /**
    * Retrieves a float preference.
@@ -69,7 +38,7 @@ class RxkPrefs(
   @CheckResult fun float(
     key: String,
     defaultValue: Float = 0f
-  ): Pref<Float> = RealPref(prefs, key, defaultValue, onKeyChange, FloatAdapter.INSTANCE)
+  ): Pref<Float>
 
   /**
    * Retrieves a integers preference.
@@ -79,7 +48,7 @@ class RxkPrefs(
   @CheckResult fun integer(
     key: String,
     defaultValue: Int = 0
-  ): Pref<Int> = RealPref(prefs, key, defaultValue, onKeyChange, IntAdapter.INSTANCE)
+  ): Pref<Int>
 
   /**
    * Retrieves a long preference.
@@ -89,7 +58,7 @@ class RxkPrefs(
   @CheckResult fun long(
     key: String,
     defaultValue: Long = 0L
-  ): Pref<Long> = RealPref(prefs, key, defaultValue, onKeyChange, LongAdapter.INSTANCE)
+  ): Pref<Long>
 
   /**
    * Retrieves a string preference.
@@ -99,7 +68,7 @@ class RxkPrefs(
   @CheckResult fun string(
     key: String,
     defaultValue: String = ""
-  ): Pref<String> = RealPref(prefs, key, defaultValue, onKeyChange, StringAdapter.INSTANCE)
+  ): Pref<String>
 
   /**
    * Retrieves a string set preference.
@@ -109,24 +78,19 @@ class RxkPrefs(
   @CheckResult fun stringSet(
     key: String,
     defaultValue: StringSet = mutableSetOf()
-  ): Pref<StringSet> = RealPref(prefs, key, defaultValue, onKeyChange, StringSetAdapter.INSTANCE)
+  ): Pref<StringSet>
 
   /** Clears all preferences in the current preferences collection. */
-  fun clear() {
-    prefs.edit()
-        .clear()
-        .apply()
-  }
+  fun clear()
 
   /** @return The underlying SharedPreferences instance. */
-  @CheckResult fun getSharedPrefs() = prefs
+  fun getSharedPrefs(): SharedPreferences
 }
 
-/**
- * We this in combination with non-Kotlin framework classes that return "nullable" even though
- * they're never actually null. Helps the compiler stay calm, along with Codacy's static analysis.
- */
-@Throws(IllegalStateException::class)
-internal fun <T> dumpsterFire(): T {
-  throw IllegalStateException("This should never happen!")
+fun rxkPrefs(
+  context: Context,
+  key: String,
+  mode: Int = Context.MODE_PRIVATE
+): RxkPrefs {
+  return RealRxkPrefs(context, key, mode)
 }
