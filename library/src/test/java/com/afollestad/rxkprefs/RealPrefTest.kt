@@ -19,12 +19,14 @@ import android.content.SharedPreferences
 import com.afollestad.rxkprefs.adapters.StringAdapter
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.subjects.PublishSubject
+import org.junit.Before
 import org.junit.Test
 
 class RealPrefTest {
@@ -49,30 +51,29 @@ class RealPrefTest {
       adapter = adapter
   )
 
+  @Before fun setup() {
+    whenever(sharedPrefs.contains(any())).doAnswer { inv ->
+      val key = inv.getArgument<String>(0)
+      return@doAnswer sharedPrefs.getString(key, "") != null
+    }
+  }
+
   @Test fun isSet_false() {
-    whenever(sharedPrefs.contains(PREF_KEY))
-        .doReturn(false)
     assertThat(pref.isSet()).isFalse()
   }
 
   @Test fun isSet_true() {
-    whenever(sharedPrefs.contains(PREF_KEY))
-        .doReturn(true)
+    whenever(sharedPrefs.getString(eq(PREF_KEY), any()))
+        .doReturn("Hello World")
     assertThat(pref.isSet()).isTrue()
   }
 
   @Test fun get_default() {
-    whenever(sharedPrefs.contains(PREF_KEY))
-        .doReturn(false)
-
     val result = pref.get()
     assertThat(result).isEqualTo(DEFAULT_VALUE)
   }
 
   @Test fun get_value() {
-    whenever(sharedPrefs.contains(PREF_KEY))
-        .doReturn(true)
-
     val expectedValue = "how's it going?"
     whenever(sharedPrefs.getString(eq(PREF_KEY), any()))
         .doReturn(expectedValue)
@@ -95,11 +96,29 @@ class RealPrefTest {
     val nextValue = "goodbye"
     whenever(sharedPrefs.getString(eq(PREF_KEY), any()))
         .doReturn(nextValue)
-    whenever(sharedPrefs.contains(PREF_KEY))
-        .doReturn(true)
 
     keyChange.onNext(PREF_KEY)
     obs.assertValues(DEFAULT_VALUE, nextValue)
+  }
+
+  @Test fun observe_multipleSubscribers() {
+    val obs = pref.observe()
+    val test1 = obs.test()
+
+    val value1 = "hello"
+    whenever(sharedPrefs.getString(eq(PREF_KEY), any()))
+        .doReturn(value1)
+    keyChange.onNext(PREF_KEY)
+
+    val test2 = obs.test()
+
+    val value2 = "goodbye"
+    whenever(sharedPrefs.getString(eq(PREF_KEY), any()))
+        .doReturn(value2)
+    keyChange.onNext(PREF_KEY)
+
+    test1.assertValues(DEFAULT_VALUE, value1, value2)
+    test2.assertValues(value2)
   }
 
   @Test fun consumer() {
