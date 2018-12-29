@@ -3,6 +3,8 @@
 This library provides reactive shared preferences interaction with very little code. It is 
 designed specifically to be used with Kotlin.
 
+<img src="https://raw.githubusercontent.com/afollestad/rxkprefs/master/showcase2.png" width="500" />
+
 Inspiration has been taken from other libraries, but it was written from the ground up on its own.
 
 [ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs/_latestVersion)
