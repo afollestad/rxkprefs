@@ -21,7 +21,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
     
-  implementation 'com.afollestad:rxkprefs:1.2.0'
+  implementation 'com.afollestad:rxkprefs:1.2.2'
 }
 ```
 
