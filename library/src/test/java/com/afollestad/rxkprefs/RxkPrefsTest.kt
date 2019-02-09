@@ -23,6 +23,7 @@ import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -115,10 +116,46 @@ class RxkPrefsTest {
     assertThat(pref.defaultValue()).isEqualTo(defaultValue)
   }
 
+  @Test fun enum() {
+    val key = "my_enum"
+    val pref =
+      rxkPrefs.enum(key, Numbers.One, Numbers.Companion::fromString, Numbers.Companion::toString)
+
+    assertThat(pref.key()).isEqualTo(key)
+    assertThat(pref.defaultValue()).isEqualTo(Numbers.One)
+
+    whenever(sharedPrefs.contains(key)).doReturn(true)
+    whenever(sharedPrefs.getString(eq(key), any())).doReturn("two")
+    assertThat(pref.get()).isEqualTo(Numbers.Two)
+    whenever(sharedPrefs.getString(eq(key), any())).doReturn("three")
+    assertThat(pref.get()).isEqualTo(Numbers.Three)
+
+    pref.set(Numbers.Four)
+    verify(prefsEditor).putString(key, "four")
+  }
+
   @Test fun clear() {
     whenever(prefsEditor.clear()).doReturn(prefsEditor)
     rxkPrefs.clear()
 
     verify(prefsEditor.clear()).apply()
+  }
+}
+
+enum class Numbers {
+  One,
+  Two,
+  Three,
+  Four;
+
+  companion object {
+    fun fromString(rawValue: String): Numbers {
+      return Numbers.values()
+          .single { it.name.toLowerCase() == rawValue }
+    }
+
+    fun toString(value: Numbers): String {
+      return value.name.toLowerCase()
+    }
   }
 }

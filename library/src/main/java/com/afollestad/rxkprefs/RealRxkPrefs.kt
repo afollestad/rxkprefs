@@ -18,6 +18,7 @@ package com.afollestad.rxkprefs
 import android.content.SharedPreferences
 import androidx.annotation.VisibleForTesting
 import com.afollestad.rxkprefs.adapters.BooleanAdapter
+import com.afollestad.rxkprefs.adapters.EnumAdapter
 import com.afollestad.rxkprefs.adapters.FloatAdapter
 import com.afollestad.rxkprefs.adapters.IntAdapter
 import com.afollestad.rxkprefs.adapters.LongAdapter
@@ -71,6 +72,17 @@ internal class RealRxkPrefs(
     key: String,
     defaultValue: StringSet
   ): Pref<StringSet> = RealPref(prefs, key, defaultValue, onKeyChange, StringSetAdapter.INSTANCE)
+
+  override fun <T : Enum<T>> enum(
+    key: String,
+    defaultValue: T,
+    convertIn: (String) -> T,
+    convertOut: (T) -> String
+  ): Pref<T> {
+    return RealPref(
+        prefs, key, defaultValue, onKeyChange, EnumAdapter(defaultValue, convertIn, convertOut)
+    )
+  }
 
   override fun clear() {
     prefs.edit()

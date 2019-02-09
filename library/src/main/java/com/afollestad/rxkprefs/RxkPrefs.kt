@@ -91,6 +91,18 @@ interface RxkPrefs {
     defaultValue: StringSet = mutableSetOf()
   ): Pref<StringSet>
 
+  /**
+   * Retrieves an enum preference.
+   *
+   * @return a [Pref] which gets and sets an enum,
+   */
+  @CheckResult fun <T : Enum<T>> enum(
+    key: String,
+    defaultValue: T,
+    convertIn: (String) -> T,
+    convertOut: (T) -> String
+  ): Pref<T>
+
   /** Clears all preferences in the current preferences collection. */
   fun clear()
 
