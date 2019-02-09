@@ -15,7 +15,6 @@
  */
 package com.afollestad.rxkprefs
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.annotation.VisibleForTesting
 import com.afollestad.rxkprefs.adapters.BooleanAdapter
@@ -28,12 +27,8 @@ import com.afollestad.rxkprefs.adapters.StringSetAdapter
 import io.reactivex.Observable
 
 internal class RealRxkPrefs(
-  context: Context,
-  key: String,
-  mode: Int = Context.MODE_PRIVATE
+  private val prefs: SharedPreferences
 ) : RxkPrefs {
-  private val prefs =
-    context.getSharedPreferences(key, mode) ?: dumpsterFire()
 
   @VisibleForTesting
   internal val onKeyChange = Observable.create<String> { emitter ->

@@ -19,6 +19,7 @@ package com.afollestad.rxkprefs
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import androidx.annotation.CheckResult
 import com.afollestad.rxkprefs.adapters.StringSet
 
@@ -98,10 +99,21 @@ interface RxkPrefs {
 }
 
 /**
- * Retrieves a new instance of the [RxkPrefs] interface.
+ * Retrieves a new instance of the [RxkPrefs] interface for a specific shared prefs set.
  */
 fun rxkPrefs(
   context: Context,
   key: String,
   mode: Int = Context.MODE_PRIVATE
-): RxkPrefs = RealRxkPrefs(context, key, mode)
+): RxkPrefs {
+  val prefs = context.getSharedPreferences(key, mode) ?: dumpsterFire()
+  return RealRxkPrefs(prefs)
+}
+
+/**
+ * Retrieves a new instance of the [RxkPrefs] interface for the default app shared prefs.
+ */
+fun rxkPrefs(context: Context): RxkPrefs {
+  val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+  return RealRxkPrefs(prefs)
+}

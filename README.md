@@ -34,6 +34,9 @@ The core of the library is the `RxkPrefs` interface. You can retrieve an instanc
  (the shared preferences mode).
 
 ```kotlin
+// Parameter is your Context, like an Activity, uses PreferenceManager#getDefaultSharedPreferences
+val myPrefs = rxkPrefs(this)
+
 // First parameter is your Context, like an Activity, the second is a key.
 val myPrefs = rxkPrefs(this, "my_prefs")
 
