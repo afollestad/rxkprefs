@@ -119,13 +119,16 @@ fun rxkPrefs(
   mode: Int = Context.MODE_PRIVATE
 ): RxkPrefs {
   val prefs = context.getSharedPreferences(key, mode) ?: dumpsterFire()
-  return RealRxkPrefs(prefs)
+  return rxkPrefs(prefs)
 }
 
 /**
  * Retrieves a new instance of the [RxkPrefs] interface for the default app shared prefs.
  */
 fun rxkPrefs(context: Context): RxkPrefs {
-  val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-  return RealRxkPrefs(prefs)
+  return rxkPrefs(PreferenceManager.getDefaultSharedPreferences(context))
+}
+
+fun rxkPrefs(sharedPrefs: SharedPreferences): RxkPrefs {
+  return RealRxkPrefs(sharedPrefs)
 }
