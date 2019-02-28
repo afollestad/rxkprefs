@@ -129,6 +129,9 @@ fun rxkPrefs(context: Context): RxkPrefs {
   return rxkPrefs(PreferenceManager.getDefaultSharedPreferences(context))
 }
 
+/**
+ * Retrieves a new instance of the [RxkPrefs] interface for a custom SharedPreferences instance.
+ */
 fun rxkPrefs(sharedPrefs: SharedPreferences): RxkPrefs {
   return RealRxkPrefs(sharedPrefs)
 }
