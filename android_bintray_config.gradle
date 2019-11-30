@@ -43,6 +43,6 @@ publish {
   artifactId = module_name
   publishVersion = versions.publish_version
   desc = "A small, Rx-powered shared preferences library for Kotlin."
-  website = "https://github.com/afollestad/library-template"
+  website = "https://github.com/afollestad/rxkprefs"
   dryRun = false
 }

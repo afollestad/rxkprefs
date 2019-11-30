@@ -4,7 +4,7 @@ ext.module_name = "rxjava"
 apply from: rootProject.file("android_library_config.gradle")
 
 dependencies {
-  implementation project(":core")
+  api project(":core")
 
   implementation deps.kotlin.stdlib8
   implementation deps.rxjava.rxjava2
