@@ -21,14 +21,10 @@ import androidx.annotation.RestrictTo.Scope.LIBRARY
 
 typealias PrefCallback<T> = Pref<T>.() -> Unit
 
-/**
- * Represents a single shared preference, implemented by [RealPref] and abstracts logic
- * away from the consumer.
- *
- * @author Aidan Follestad (@afollestad)
- */
-interface Pref<T> {
+/** @author Aidan Follestad (@afollestad) */
+interface PrefChange<T> {
 
+  /** Invokes change listeners for the preference. */
   @RestrictTo(LIBRARY) fun notifyChanged()
 
   /** Adds a callback that is invoked when the [Pref] is changed. */
@@ -42,6 +38,15 @@ interface Pref<T> {
 
   /** Removes a callback added with [addOnDestroyed]. */
   fun removeOnDestroyed(callback: PrefCallback<T>)
+}
+
+/**
+ * Represents a single shared preference, implemented by [RealPref] and abstracts logic
+ * away from the consumer.
+ *
+ * @author Aidan Follestad (@afollestad)
+ */
+interface Pref<T> : PrefChange<T> {
 
   /** @return the shared preference's key. */
   @CheckResult fun key(): String
