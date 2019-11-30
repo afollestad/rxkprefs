@@ -1,8 +1,8 @@
-apply from: '../dependencies.gradle'
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+apply from: "../dependencies.gradle"
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
 
-apply from: '../bintrayconfig.gradle'
+apply from: "../bintrayconfig.gradle"
 
 android {
   compileSdkVersion versions.compileSdk
@@ -21,14 +21,14 @@ android {
 }
 
 dependencies {
-  implementation 'androidx.annotation:annotation:' + versions.androidx
-  implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:' + versions.kotlin
-  implementation 'io.reactivex.rxjava2:rxjava:' + versions.rxJava
+  implementation deps.androidx.annotations
+  implementation deps.kotlin.stdlib8
+  implementation deps.rxjava.rxjava2
 
-  testImplementation 'junit:junit:' + versions.junit
-  testImplementation 'org.mockito:mockito-core:' + versions.mockito
-  testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:' + versions.mockitoKotlin
-  testImplementation 'com.google.truth:truth:' + versions.truth
+  testImplementation deps.kotlin.test.mockito
+  testImplementation deps.test.junit
+  testImplementation deps.test.mockito_core
+  testImplementation deps.test.truth
 }
 
-apply from: '../spotless.gradle'
+apply from: "../spotless.gradle"
