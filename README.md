@@ -7,7 +7,6 @@ designed specifically to be used with Kotlin.
 
 Inspiration has been taken from other libraries, but it was written from the ground up on its own.
 
-[ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs/_latestVersion)
 [![Build Status](https://travis-ci.org/afollestad/rxkprefs.svg?branch=master)](https://travis-ci.org/afollestad/rxkprefs)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4b70e396d3c549d28bbb6373885200a0)](https://www.codacy.com/app/drummeraidan_50/rxkprefs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=afollestad/rxkprefs&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
@@ -16,11 +15,13 @@ Inspiration has been taken from other libraries, but it was written from the gro
 
 # Gradle Dependency
 
+[ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs%3Acore/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs%3A:core/_latestVersion)
+
 Add this to your module's `build.gradle` file:
 
 ```gradle
 dependencies {
-    
+
   implementation "com.afollestad.rxkprefs:core:2.0.0"
 }
 ```
@@ -102,6 +103,8 @@ myPref.destroy()
 
 ### Gradle Dependency
 
+[ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs%3Acoroutines/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs%3Acoroutines/_latestVersion)
+
 Add this to your module's `build.gradle` file:
 
 ```gradle
@@ -130,6 +133,8 @@ scope.launch {
 # RxJava Extension
 
 ### Gradle Dependency
+
+[ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs%3Arxjava/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs%3Arxjava/_latestVersion)
 
 Add this to your module's `build.gradle` file:
 
