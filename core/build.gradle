@@ -1,0 +1,15 @@
+ext.module_group = "com.afollestad.rxkprefs"
+ext.module_name = "core"
+
+apply from: rootProject.file("android_library_config.gradle")
+
+dependencies {
+  implementation deps.androidx.preference
+  implementation deps.kotlin.stdlib8
+  compileOnly deps.androidx.annotations
+
+  testImplementation deps.kotlin.test.mockito
+  testImplementation deps.test.junit
+  testImplementation deps.test.mockito_core
+  testImplementation deps.test.truth
+}

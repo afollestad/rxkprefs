@@ -1,7 +1,7 @@
-apply from: "./versionsPlugin.gradle"
+apply from: "versions_plugin_config.gradle"
 
 buildscript {
-  apply from: "./dependencies.gradle"
+  apply from: "dependencies.gradle"
 
   repositories {
     google()
@@ -21,6 +21,14 @@ allprojects {
   repositories {
     google()
     jcenter()
+  }
+}
+
+subprojects {
+  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+      freeCompilerArgs += ['-module-name', project.path.replace('/', '.')]
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-### RxkPrefs
+# RxkPrefs
 
 This library provides reactive shared preferences interaction with very little code. It is 
 designed specifically to be used with Kotlin.
@@ -14,20 +14,20 @@ Inspiration has been taken from other libraries, but it was written from the gro
 
 ---
 
-### Gradle Dependency
+# Gradle Dependency
 
 Add this to your module's `build.gradle` file:
 
 ```gradle
 dependencies {
     
-  implementation "com.afollestad:rxkprefs:1.2.5"
+  implementation "com.afollestad.rxkprefs:core:2.0.0"
 }
 ```
 
 ---
 
-### Getting Started
+# Getting Started
 
 The core of the library is the `RxkPrefs` interface. You can retrieve an instance of this interface 
  with the `rxkPrefs` method, which takes 3 parameters. One of these parameters is optional 
@@ -88,32 +88,81 @@ val isSet: Boolean = myPref.isSet()
 // Deletes any existing value for the preference.
 myPref.delete()
 
-// See "The Preference Observable" below 
-val observable: Observable<Int> = myPref.observe()
+// These are used by the RxJava and coroutines extensions, but you may find them useful.
+myPref.addOnChangedListener { }
+myPref.addOnDestroyedListener { }
+
+// Destroys the instance, clearing listeners and anything that could leak memory.
+myPref.destroy()
 ```
 
-### The Preference Observable
+---
 
-You can receive changes to a preference in real-time with its
+# Coroutines Extension
+
+### Gradle Dependency
+
+Add this to your module's `build.gradle` file:
+
+```gradle
+dependencies {
+    
+  implementation "com.afollestad.rxkprefs:coroutines:2.0.0"
+}
+```
+
+### As a Flow
+
+You can receive changes to a preference in real-time using a coroutines `Flow`, specifically a hot 
+flow.
+
+```kotlin
+val myPref: Pref<Boolean> = // ...
+val flow: Flow<Boolean> = myPref.asFlow()
+
+scope.launch {
+  flow.collect { println(it) }
+}
+```
+
+---
+
+# RxJava Extension
+
+### Gradle Dependency
+
+Add this to your module's `build.gradle` file:
+
+```gradle
+dependencies {
+    
+  implementation "com.afollestad.rxkprefs:rxjava:2.0.0"
+}
+```
+
+### As an Observable
+
+You can receive changes to a preference in real-time using an RxJava 
 Observable.
 
 ```kotlin
 val myPref: Pref<Long> = // ...
-val obs = myPref.observe()
+val obs: Observable<Long> = myPref.observe()
 
-val sub = obs.subscribe { newValue ->
+val disposable = obs.subscribe { newValue ->
   // use new value
 }
-sub.dispose() // when you no longer want to receive values
+// when you no longer want to receive values
+sub.dispose()
 ```
 
 Further usage of this is more of an RxJava issue and less specific to 
 this library. You should have a basic understanding of what you can do 
 with RxJava and what its use cases are.
 
-### The Preference Consumer
+### As a Consumer
 
-`Pref` itself acts as an Rx `Consumer`. You can use this to save preference values 
+`Pref` can act as an RxJava `Consumer`. You can use this to save preference values 
 from the emissions of an Observable.
 
 Say you're using [RxBinding](https://github.com/JakeWharton/RxBinding) 
@@ -124,7 +173,7 @@ such as a CheckBox:
 val myPref: Pref<Boolean> = // ...
 
 RxCompoundButton.checks(yourCheckboxView)
-  .subscribe(myPref)
+  .subscribe(myPref.asConsumer)
 ``` 
 
 Whenever the checkbox is checked or unchecked, the underlying 

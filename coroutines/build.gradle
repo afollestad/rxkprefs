@@ -1,0 +1,18 @@
+ext.module_group = "com.afollestad.rxkprefs"
+ext.module_name = "coroutines"
+
+apply from: rootProject.file("android_library_config.gradle")
+
+dependencies {
+  implementation project(":core")
+
+  implementation deps.kotlin.coroutines.core
+  implementation deps.kotlin.stdlib8
+  compileOnly deps.androidx.annotations
+
+  testImplementation deps.kotlin.test.coroutines
+  testImplementation deps.kotlin.test.mockito
+  testImplementation deps.test.junit
+  testImplementation deps.test.mockito_core
+  testImplementation deps.test.truth
+}
