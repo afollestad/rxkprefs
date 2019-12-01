@@ -15,7 +15,7 @@ Inspiration has been taken from other libraries, but it was written from the gro
 
 # Gradle Dependency
 
-[ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs%3Acore/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs%3A:core/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs%3Acore/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs%3Acore/_latestVersion)
 
 Add this to your module's `build.gradle` file:
 
