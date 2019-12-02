@@ -22,7 +22,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
 
-  implementation "com.afollestad.rxkprefs:core:2.0.0"
+  implementation "com.afollestad.rxkprefs:core:2.0.1"
 }
 ```
 
@@ -110,7 +110,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
     
-  implementation "com.afollestad.rxkprefs:coroutines:2.0.0"
+  implementation "com.afollestad.rxkprefs:coroutines:2.0.1"
 }
 ```
 
@@ -141,7 +141,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
     
-  implementation "com.afollestad.rxkprefs:rxjava:2.0.0"
+  implementation "com.afollestad.rxkprefs:rxjava:2.0.1"
 }
 ```
 
@@ -178,7 +178,7 @@ such as a CheckBox:
 val myPref: Pref<Boolean> = // ...
 
 RxCompoundButton.checks(yourCheckboxView)
-  .subscribe(myPref.asConsumer)
+  .subscribe(myPref.asConsumer())
 ``` 
 
 Whenever the checkbox is checked or unchecked, the underlying 
@@ -188,7 +188,7 @@ Basically, it works like this:
 
 ```kotlin
 val myObs: Observable<String> = // ...
-val myConsumer: Consumer<String> = // ...which can be an instance of Pref
+val myConsumer: Consumer<String> = // ...which can be from an instance of Pref
 
 myObs.subscribe(myConsumer)
 ```
