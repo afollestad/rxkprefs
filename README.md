@@ -22,7 +22,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
 
-  implementation "com.afollestad.rxkprefs:core:2.0.1"
+  implementation "com.afollestad.rxkprefs:core:2.0.2"
 }
 ```
 
@@ -110,7 +110,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
     
-  implementation "com.afollestad.rxkprefs:coroutines:2.0.1"
+  implementation "com.afollestad.rxkprefs:coroutines:2.0.2"
 }
 ```
 
@@ -141,7 +141,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
     
-  implementation "com.afollestad.rxkprefs:rxjava:2.0.1"
+  implementation "com.afollestad.rxkprefs:rxjava:2.0.2"
 }
 ```
 
