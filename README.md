@@ -123,9 +123,16 @@ flow.
 val myPref: Pref<Boolean> = // ...
 val flow: Flow<Boolean> = myPref.asFlow()
 
+// One way...
 scope.launch {
   flow.collect { println(it) }
 }
+
+// Another way...
+flow
+  .onEach { println(it) }
+  .launchIn(scope)
+
 ```
 
 ---
