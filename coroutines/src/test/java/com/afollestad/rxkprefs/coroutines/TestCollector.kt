@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.afollestad.rxkprefs
+package com.afollestad.rxkprefs.coroutines
 
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.CoroutineScope

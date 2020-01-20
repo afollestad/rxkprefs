@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.afollestad.rxkprefs
+package com.afollestad.rxkprefs.coroutines
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
-import com.afollestad.rxkprefs.coroutines.asFlow
+import com.afollestad.rxkprefs.Pref
+import com.afollestad.rxkprefs.RxkPrefs
+import com.afollestad.rxkprefs.rxkPrefs
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.doReturn
