@@ -7,7 +7,7 @@ designed specifically to be used with Kotlin.
 
 Inspiration has been taken from other libraries, but it was written from the ground up on its own.
 
-[![Build Status](https://travis-ci.org/afollestad/rxkprefs.svg?branch=master)](https://travis-ci.org/afollestad/rxkprefs)
+[![Android CI](https://github.com/afollestad/rxkprefs/workflows/Android%20CI/badge.svg)](https://github.com/afollestad/rxkprefs/actions?query=workflow%3A%22Android+CI%22)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4b70e396d3c549d28bbb6373885200a0)](https://www.codacy.com/app/drummeraidan_50/rxkprefs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=afollestad/rxkprefs&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
