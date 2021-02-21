@@ -15,7 +15,7 @@ Inspiration has been taken from other libraries, but it was written from the gro
 
 # Gradle Dependency
 
-[ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs%3Acore/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs%3Acore/_latestVersion)
+[ ![Core](https://img.shields.io/maven-central/v/com.afollestad.rxkprefs/core?style=flat&label=Core) ](https://repo1.maven.org/maven2/com/afollestad/rxkprefs)
 
 Add this to your module's `build.gradle` file:
 
@@ -103,7 +103,7 @@ myPref.destroy()
 
 ### Gradle Dependency
 
-[ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs%3Acoroutines/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs%3Acoroutines/_latestVersion)
+[ ![Coroutines](https://img.shields.io/maven-central/v/com.afollestad.rxkprefs/coroutines?style=flat&label=Coroutines) ](https://repo1.maven.org/maven2/com/afollestad/rxkprefs/coroutines)
 
 Add this to your module's `build.gradle` file:
 
@@ -141,7 +141,7 @@ flow
 
 ### Gradle Dependency
 
-[ ![Download](https://api.bintray.com/packages/drummer-aidan/maven/rxkprefs%3Arxjava/images/download.svg) ](https://bintray.com/drummer-aidan/maven/rxkprefs%3Arxjava/_latestVersion)
+[ ![RxJava](https://img.shields.io/maven-central/v/com.afollestad.rxkprefs/rxjava?style=flat&label=RxJava) ](https://repo1.maven.org/maven2/com/afollestad/rxkprefs/rxjava)
 
 Add this to your module's `build.gradle` file:
 
