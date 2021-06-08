@@ -31,6 +31,9 @@ fun <T : Any> Pref<T>.asFlow(): Flow<T> {
     addOnDestroyed { close() }
     addOnChanged { offer(get()) }
     offer(get())
-    awaitClose { cancel() }
+    awaitClose { 
+      destroy() 
+      cancel() 
+    }
   }
 }
